@@ -1,0 +1,49 @@
+---
+import moment from 'moment';
+const { log } = Astro.props;
+
+let publishDate = moment(log.publishDate).fromNow();
+---
+
+<style lang="scss">
+  .card {
+    background-color: white;
+    padding: 2ch;
+    border-radius: 1ch;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .card-title {
+      width: 100%;
+      display: flex;
+      small {
+        margin-left: auto;
+        align-self: center;
+      }
+    }
+    .tags {
+      span {
+        color: white;
+        background-color: var(--c-grey);
+        margin: 0 2px;
+        padding: 4px 1ch;
+        border-radius: 2ch;
+      }
+      span:first-of-type {
+        margin-left:0px;
+      }
+    }
+  }
+</style>
+
+<div class="card">
+  <div class="card-title">
+    <h2 class="mt1 mb1">{log.title}</h2>
+    <small>{publishDate}</small>
+  </div>
+  <div class="tags">
+    {log.tags.map(tag => (
+      <span>{tag}</span>
+    ))}
+  </div>
+  <div>{log.astro.html}</div>
+</div>
