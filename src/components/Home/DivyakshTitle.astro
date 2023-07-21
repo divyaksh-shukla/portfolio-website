@@ -7,32 +7,33 @@
     .divyaksh-title-container {
         display: flex;
         min-height: calc(100vh - 58px);
-        font-family: 'Open Sans', sans-serif;
+        font-family: "Open Sans", sans-serif;
         .divyaksh-title {
             align-self: center;
             display: grid;
+            align-items: start;
             column-gap: 4em;
-            grid-template-areas: 
-            "title info"
-            "title education"
-            "pic roles"
-            "pic desc"
-            "pic bio"
-            "pic bio";
+            grid-template-areas:
+                "pic title title title title"
+                "pic info info info info"
+                "pic education education education education"
+                "pic roles roles roles roles"
+                "pic desc desc desc desc"
+                "bio desc desc desc desc";
             @media (max-width: $w-s) {
-                grid-template-areas: 
-                "title pic pic"
-                "info info info"
-                "education education education"
-                "roles roles roles"
-                "desc desc desc"
-                "bio bio bio";
+                grid-template-areas:
+                    "title pic pic"
+                    "info info info"
+                    "education education education"
+                    "roles roles roles"
+                    "desc desc desc"
+                    "bio bio bio";
             }
             .title {
                 margin: 0px;
                 grid-area: title;
-                font-family: 'Open Sans', sans-serif;
-                font-weight: 530;
+                font-family: "Open Sans", sans-serif;
+                font-weight: 450;
                 display: grid;
                 font-size: var(--f-u9);
                 @media (max-width: $w-s) {
@@ -44,7 +45,6 @@
                     letter-spacing: 2px;
                     align-self: end;
                 }
-                
             }
             .mobile {
                 display: none;
@@ -66,7 +66,7 @@
                     background-color: var(--c-grey);
                     color: var(--t-bg);
                     padding: 0.4em 0.8em;
-                    
+
                     cursor: default;
                     transition: color linear 150ms;
                     &:hover {
@@ -118,9 +118,24 @@
             .personal-info {
                 grid-area: info;
             }
+            .sectionTitle {
+                margin: 0px
+            }
+            .bio {
+                line-height: 1.5;
+                margin-bottom: 2rem;
+
+                > span:first-of-type {
+                    line-height: 1;
+                    margin-bottom: 0.5em;
+                    display: block;
+                    // font-weight: 700;
+                    font-size: var(--f-u4);
+                }
+            }
             .side-bio {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 grid-area: bio;
                 grid-column-gap: 2em;
                 @media (max-width: $w-s) {
@@ -155,18 +170,32 @@
 <div class="divyaksh-title-container">
     <div class="divyaksh-title">
         <h1 class="title">
-            <span class="subtitle">Portfolio of</span>
+            <!-- <span class="subtitle">Portfolio of</span> -->
             Divyaksh Shukla
         </h1>
         <div class="profile-pic">
-            <img src="/profile-pic.jpg" alt="Divyaksh Shukla">
+            <img src="/profile-pic-small.jpg" alt="Divyaksh Shukla" />
         </div>
         <div class="personal-info">
-            📞 +91-9611519000&nbsp;&nbsp;&nbsp;&nbsp;✉️ divyaksh.shukla@gmail.com
+            📞 +91-9611519000&nbsp;&nbsp;&nbsp;&nbsp;✉️
+            divyaksh.shukla@gmail.com
         </div>
         <div class="education-list">
-            🎓 Pursuing M.Tech (Data Science and Engineering) WILP BITS Pilani<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.E. (Computer Science) PESIT South Campus
+            <img
+                src="/iit-kanpur-logo-small.png"
+                style="height: 2ch; margin-bottom:-0.3ch"
+                alt="IITK"
+            /> Pursuing Ph.D. from IIT-Kanpur<br />
+            <img
+                src="/BITS_Pilani-Logo-small.png"
+                style="height: 2ch; margin-bottom:-0.3ch"
+                alt="BITS"
+            /> M.Tech (Data Science and Engineering) WILP BITS Pilani<br />
+            <img
+                src="/pesit-logo-small.png"
+                style="height: 2ch; margin-bottom:-0.3ch"
+                alt="PESIT"
+            /> B.E. (Computer Science) PESIT South Campus
         </div>
         <div class="roles desktop">
             <span class="role first">🔧 Senior Software Engineer</span>
@@ -178,45 +207,167 @@
             <div class="role">🌐 Full-Stack DevOps Engineer</div>
             <div class="role last">✍️ Drawing</div>
         </div>
+
         <div class="description">
-            Lover of Machine Learning, Recommendation systems, Big Data and books 📖
+            <div class="section">
+                <h3 class="sectionTitle">About me</h3>
+                <p class="bio">
+                    <span>Hi!</span> I am Divyaksh Shukla, a PhD student at IIT-Kanpur
+                    in the Department of Computer Science and Engineering, joined
+                    July 2023. Before pursuing my doctoral studies I was a Senior
+                    Software Engineer at Itron. Itron is a US-based company working
+                    on smart utility metering. I worked on electrical load forecasting,
+                    where I developed end-to-end solutions for clients to see forecasting
+                    results on a web-based dashboard.<br /><br />
+
+                    I did my M.Tech from BITS-Pilani in the field of Data
+                    Science and Engineering. I wrote my thesis under the
+                    guidance of Dr. Frank Monforte, Director Itron, titled
+                    "AI-Based Electrical Load forecasting using real-time load
+                    data in the presence of volatile behind-the-meter Solar PV
+                    power generation".<br /><br />
+
+                    I intend to bring the disparate worlds of Machine Learning
+                    and Operations together, popularly called MLOps. With my
+                    industrial experience and knowledge in Continuous
+                    Integration and Deployment systems using Azure Cloud,
+                    Kubernetes and Docker, I wish to make a seamless environment
+                    to build-improve-deploy models for real-world operations.
+                </p>
+            </div>
         </div>
         <div class="side-bio">
             <div>
                 <h2>Coding</h2>
                 <ul>
-                <li><img src="/Python-logo-notext.svg" style="height: 2ch" alt="Python"> Python</li>
-                <li><img src="/c.svg" style="height: 2ch" alt="Javascript"> C#</li>
-                <li><img src="/Unofficial_JavaScript_logo_2.svg" style="height: 2ch" alt="Javascript"> Javascript</li>
-                <li><img src="/java-4-logo.svg" style="height: 2ch" alt="Java"> Java</li>
-                <li><img src="/ISO_C++_Logo.svg" style="height: 2ch" alt="C / C++"> C / C++</li>
-                <li><img src="/sql-database-generic.svg" style="height: 2ch" alt="SQL"> SQL</li>
+                    <li>
+                        <img
+                            src="/Python-logo-notext.svg"
+                            style="height: 2ch"
+                            alt="Python"
+                        /> Python
+                    </li>
+                    <li>
+                        <img
+                            src="/c.svg"
+                            style="height: 2ch"
+                            alt="Javascript"
+                        /> C#
+                    </li>
+                    <li>
+                        <img
+                            src="/Unofficial_JavaScript_logo_2.svg"
+                            style="height: 2ch"
+                            alt="Javascript"
+                        /> Javascript
+                    </li>
+                    <li>
+                        <img
+                            src="/java-4-logo.svg"
+                            style="height: 2ch"
+                            alt="Java"
+                        /> Java
+                    </li>
+                    <li>
+                        <img
+                            src="/ISO_C++_Logo.svg"
+                            style="height: 2ch"
+                            alt="C / C++"
+                        /> C / C++
+                    </li>
+                    <li>
+                        <img
+                            src="/sql-database-generic.svg"
+                            style="height: 2ch"
+                            alt="SQL"
+                        /> SQL
+                    </li>
                 </ul>
             </div>
             <div>
                 <h2>Industry Knowledge</h2>
                 <ul>
-                <li>Deep Learning</li>
-                <li>Cloud Computing</li>
-                <li>Data Science</li>
-                <li>Data Mining</li>
-                <li>Web Applications</li>
-                <li>CI / CD pipelining</li>
+                    <li>Deep Learning</li>
+                    <li>Cloud Computing</li>
+                    <li>Data Science</li>
+                    <li>Data Mining</li>
+                    <li>Web Applications</li>
+                    <li>CI / CD pipelining</li>
                 </ul>
             </div>
             <div>
                 <h2>Tools &amp; Technologies</h2>
                 <ul>
-                <li><img src="/tensorflow_logo.svg" style="height: 2ch" alt="Tensorflow"> Tensorflow</li>
-                <li><img src="/Keras_logo.svg" style="height: 2ch" alt="Keras"> Keras</li>
-                <li><img src="/PyTorch_logo_icon.svg" style="height: 2ch" alt="PyTorch"> PyTorch</li>
-                <li><img src="/Pandas_mark.svg" style="height: 2ch" alt="Pandas"> Pandas</li>
-                <li><img src="/seaborn_logo.svg" style="height: 2ch" alt="Seaborn"> Seaborn</li>
-                <li><img src="/tableau-software.svg" style="height: 2ch" alt="Tableau"> Tableau</li>
-                <li><img src="/react.svg" style="height: 2ch" alt="ReactJS"> React.js</li>
-                <li><img src="/angular.svg" style="height: 2ch" alt="Angular"> Angular</li>
-                <li><img src="/HTML5_Badge.svg" style="height: 2ch" alt="HTML5"> HTML5</li>
-                <li><img src="/Microsoft_logo.svg" style="height: 2ch" alt="Microsoft"> Microsoft Excel, Word &amp; Powerpoint</li>
+                    <li>
+                        <img
+                            src="/tensorflow_logo.svg"
+                            style="height: 2ch"
+                            alt="Tensorflow"
+                        /> Tensorflow
+                    </li>
+                    <li>
+                        <img
+                            src="/Keras_logo.svg"
+                            style="height: 2ch"
+                            alt="Keras"
+                        /> Keras
+                    </li>
+                    <li>
+                        <img
+                            src="/PyTorch_logo_icon.svg"
+                            style="height: 2ch"
+                            alt="PyTorch"
+                        /> PyTorch
+                    </li>
+                    <li>
+                        <img
+                            src="/Pandas_mark.svg"
+                            style="height: 2ch"
+                            alt="Pandas"
+                        /> Pandas
+                    </li>
+                    <li>
+                        <img
+                            src="/seaborn_logo-small.png"
+                            style="height: 2ch"
+                            alt="Seaborn"
+                        /> Seaborn
+                    </li>
+                    <li>
+                        <img
+                            src="/tableau-software.svg"
+                            style="height: 2ch"
+                            alt="Tableau"
+                        /> Tableau
+                    </li>
+                    <li>
+                        <img
+                            src="/react.svg"
+                            style="height: 2ch"
+                            alt="ReactJS"
+                        /> React.js
+                    </li>
+                    <li>
+                        <img
+                            src="/angular.svg"
+                            style="height: 2ch"
+                            alt="Angular"
+                        /> Angular
+                    </li>
+                    <li>
+                        <img
+                            src="/HTML5_Badge.svg"
+                            style="height: 2ch"
+                            alt="HTML5"
+                        /> HTML5
+                    </li>
+                    <li>
+                        <img
+                            src="/Microsoft_logo.svg"
+                            style="height: 2ch"
+                            alt="Microsoft"
+                        /> Microsoft Excel, Word &amp; Powerpoint
+                    </li>
                 </ul>
             </div>
         </div>
