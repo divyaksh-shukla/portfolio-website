@@ -17,16 +17,18 @@ const diaryLogs = Astro.fetchContent<MarkdownFrontmatter>('./diaryLog/**/*.md')
   <head>
     <MainHead title="Diary Log | Divyaksh Shukla" />
     <style lang="scss">
+
+      $w-s: 750px;
       .grid {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
         grid-gap: 1rem;
         grid-auto-flow: row;
       }
-      @media only screen and (max-width: 720px) {
+      @media only screen and (max-width: $w-s) {
           .grid {
           display: grid;
-          grid-template-columns: auto;
+          grid-template-columns: 100%;
           grid-gap: 1rem;
           grid-auto-flow: row;
         }
@@ -40,7 +42,7 @@ const diaryLogs = Astro.fetchContent<MarkdownFrontmatter>('./diaryLog/**/*.md')
       <div class="grid">
       <!-- <DiaryLog client:visible /> -->
         {diaryLogs.map((diaryLog) => (
-          <DiaryLog log={diaryLog} client:only="react" ></DiaryLog>
+          <DiaryLog log={diaryLog} client:only="preact" ></DiaryLog>
         ))}
       </div>
     </div>

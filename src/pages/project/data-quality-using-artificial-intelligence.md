@@ -11,4 +11,8 @@ tags:
   - research
   - publish
 ---
-Patent Link: [Data Quality Using Artificial Intelligence](https://uspto.report/patent/app/20210049138)
+Patent Link: [Data Quality Using Artificial Intelligence](https://patents.google.com/patent/US11550766B2/)
+
+Machine learning model to recommend data quality tags and possible data transformations.
+
+Filed as part of an Internship at Oracle Corp.
