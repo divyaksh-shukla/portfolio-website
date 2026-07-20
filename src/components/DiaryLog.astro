@@ -3,6 +3,8 @@ import moment from 'moment';
 const { log } = Astro.props;
 
 let publishDate = moment(log.publishDate).fromNow();
+const Content = log.Content;
+const tags = Array.isArray(log.tags) ? log.tags : [];
 ---
 
 <style lang="scss">
@@ -41,9 +43,9 @@ let publishDate = moment(log.publishDate).fromNow();
     <small>{publishDate}</small>
   </div>
   <div class="tags">
-    {log.tags.map(tag => (
+    {tags.map((tag) => (
       <span>{tag}</span>
     ))}
   </div>
-  <div>{log.astro.html}</div>
+  <div>{Content && <Content />}</div>
 </div>

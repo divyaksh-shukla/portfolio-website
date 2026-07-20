@@ -2,13 +2,16 @@
 import MainHead from '../components/MainHead.astro';
 import Footer from '../components/Footer/index.jsx';
 import Nav from '../components/Nav/index.jsx';
-import DiaryLog from '../components/DiaryLog/index.jsx';
+import DiaryLog from '../components/DiaryLog.astro';
 
-interface MarkdownFrontmatter {
-  publishDate: number;
-}
+const diaryLogModules = import.meta.glob('./diaryLog/**/*.md', { eager: true });
 
-const diaryLogs = Astro.fetchContent<MarkdownFrontmatter>('./diaryLog/**/*.md')
+const diaryLogs = Object.entries(diaryLogModules)
+  .map(([path, log]) => ({
+    ...(log as { frontmatter: Record<string, unknown>; default: any }).frontmatter,
+    url: path.replace(/^\.\//, '/').replace(/\.md$/, ''),
+    Content: (log as { default: any }).default,
+  }))
   .filter(({ publishDate }) => !!publishDate)
   .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
 // const diaryLogs = Astro.fetchContent('./diaryLog/**/*.md');
@@ -40,9 +43,8 @@ const diaryLogs = Astro.fetchContent<MarkdownFrontmatter>('./diaryLog/**/*.md')
     <div>
       <h1 class="title">Diary Log Entries</h1>
       <div class="grid">
-      <!-- <DiaryLog client:visible /> -->
         {diaryLogs.map((diaryLog) => (
-          <DiaryLog log={diaryLog} client:only="preact" ></DiaryLog>
+          <DiaryLog log={diaryLog} />
         ))}
       </div>
     </div>

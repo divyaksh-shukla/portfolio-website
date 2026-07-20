@@ -7,8 +7,15 @@ import Nav from '../components/Nav/index.jsx';
 import Footer from '../components/Footer/index.jsx';
 import PortfolioPreview from '../components/PortfolioPreview/index.jsx';
 
-// Data Fetching: List all Markdown posts in the repo.
-const projects = Astro.fetchContent('./project/**/*.md');
+const projectModules = import.meta.glob('./project/**/*.md', { eager: true });
+
+const projects = Object.entries(projectModules)
+  .map(([path, project]) => ({
+    ...(project as { frontmatter: Record<string, unknown> }).frontmatter,
+    url: path.replace(/^\.\//, '/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
+
 const featuredProject = projects[0];
 
 // Full Astro Component Syntax:

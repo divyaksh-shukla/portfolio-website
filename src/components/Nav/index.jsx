@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import Styles from './styles.module.scss';
-import icon from '/blog icon.svg';
+import icon from '/public/blog-icon.svg';
 import DsIcon from './DsIcon.jsx';
 
 function Nav() {

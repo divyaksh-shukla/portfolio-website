@@ -4,11 +4,13 @@ import Footer from '../components/Footer/index.jsx';
 import Nav from '../components/Nav/index.jsx';
 import PortfolioPreview from '../components/PortfolioPreview/index.jsx';
 
-interface MarkdownFrontmatter {
-  publishDate: number;
-}
+const projectModules = import.meta.glob('./project/**/*.md', { eager: true });
 
-const projects = Astro.fetchContent<MarkdownFrontmatter>('./project/**/*.md')
+const projects = Object.entries(projectModules)
+  .map(([path, project]) => ({
+    ...(project as { frontmatter: Record<string, unknown> }).frontmatter,
+    url: path.replace(/^\.\//, '/').replace(/\.md$/, ''),
+  }))
   .filter(({ publishDate }) => !!publishDate)
   .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
 ---
