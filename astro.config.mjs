@@ -14,5 +14,5 @@ export default defineConfig({
   integrations: [preact()],
   // Replace with your GitHub username and repository name
   site: 'https://divyaksh-shukla.github.io',
-  base: '/portfolio-website',
+  base: '/',
 });
